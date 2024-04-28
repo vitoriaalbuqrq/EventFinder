@@ -1,4 +1,3 @@
-import React from 'react';
 import LinkButton from './LinkButton';
 import theme from '../../theme';
 import { NavbarContainer, NavbarList} from './Navbar.style';

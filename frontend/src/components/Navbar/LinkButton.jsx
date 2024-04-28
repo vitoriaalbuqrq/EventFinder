@@ -6,6 +6,7 @@ const StyledLinkButton = styled(Link)`
   color:  ${props => props.textColor || '#000'};
   font-weight: bold;
   font-size: .9em;
+  white-space: nowrap;
   background-color: ${props => props.bgColor};
   padding: 8px 16px; 
   border-radius: 20px; 
