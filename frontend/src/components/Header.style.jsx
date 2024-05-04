@@ -11,7 +11,9 @@ export const BannerImage = styled.img`
     object-fit: cover;
     width: 100%;
     height: 100%;
-    filter: grayscale(20%);
+    position: relative;
+    /* filter: opacity(98%); */
+    /* filter: grayscale(20%); */
 `;
 
 export const HeaderContainer = styled.div`
@@ -28,18 +30,20 @@ export const SloganHeader = styled.h1`
     font-weight: bold;
     margin: 0 auto;
     color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
 `;
 
 export const SearchContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 50px;
     gap: 10px;
 `;
 
 const inputSearch = `
-    background-color: ${theme.colors.ligth_gray};
+    background-color:#fff;
     height: 40px;
     border-radius: 20px;
     border: none;

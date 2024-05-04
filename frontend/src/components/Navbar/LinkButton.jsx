@@ -10,7 +10,7 @@ const StyledLinkButton = styled(Link)`
   background-color: ${props => props.bgColor};
   padding: 8px 16px; 
   border-radius: 20px; 
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
     opacity: 0.9;

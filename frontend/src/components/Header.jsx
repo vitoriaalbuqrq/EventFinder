@@ -5,6 +5,7 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <BannerImage src={bannerEvent} alt="banner"/>
+      
       <HeaderContainer>
         <SloganHeader>
           O poder de divulgação está em suas mãos.
@@ -12,7 +13,7 @@ const Header = () => {
         </SloganHeader>
 
         <SearchContainer>
-          <CustomInput type="text" placeholder="Pesquise por um evento..." />
+          <CustomInput type="text" placeholder="Pesquise por um evento..."/>
           <CustomSelect>
             <option value="Localização">Localização</option>
           </CustomSelect>
