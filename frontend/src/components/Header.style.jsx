@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from '../theme';
 
 export const HeaderWrapper = styled.header`
     width: 100%;
@@ -12,6 +11,7 @@ export const BannerImage = styled.img`
     width: 100%;
     height: 100%;
     position: relative;
+
     /* filter: opacity(98%); */
     /* filter: grayscale(20%); */
 `;
@@ -61,9 +61,3 @@ export const CustomSelect = styled.select`
     ${inputSearch};
     width: 20%;
 `;
-
-
-
-
-
-

@@ -1,14 +1,15 @@
 import React from 'react'
 import Header from '../components/Header'
 import Categories from '../components/Categories'
-import CardEvent from '../components/CardEvent'
+import Carousel from '../components/Carousel'
 
 const Home = () => {
 
   return (
     <div>
-      <Header/>
-      <Categories/>
+      <Header />
+      <Categories />
+      <Carousel/>
     </div>
   )
 }

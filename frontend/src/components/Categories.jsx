@@ -1,5 +1,5 @@
 import { Container, CardCategory, Icon, Text} from './Categories.style';
-import { FaChalkboardTeacher, FaGlobe, FaRegCalendarAlt, FaUsers, FaEllipsisH } from "react-icons/fa";
+import { FaChalkboardTeacher, FaGlobe, FaBookOpen , FaUsers, FaEllipsisH} from "react-icons/fa";
 import { BsFillMusicPlayerFill } from "react-icons/bs";
 
 const Categories = () => {
@@ -7,7 +7,7 @@ const Categories = () => {
     { text: "Shows e Festivais", icon: BsFillMusicPlayerFill },
     { text: "Workshops", icon: FaChalkboardTeacher },
     { text: "Online", icon: FaGlobe },
-    { text: "Educação", icon: FaRegCalendarAlt },
+    { text: "Educação", icon: FaBookOpen  },
     { text: "Social", icon: FaUsers },
     { text: "Outros", icon: FaEllipsisH }
   ];
