@@ -3,12 +3,18 @@ import theme from '../theme';
 
 export const CustomNavigation = styled.div`
     color: ${theme.colors.main_color};
-`;
+    `;
 
 export const CardContainer = styled.div`
     padding-inline: 60px;
     text-align: center;
 `;
+
+export const SectionTitle = styled.h1`
+    color: ${theme.colors.secondary};
+    text-align: center;
+    margin-bottom: 20px;
+`
 
 export const CardWrapper = styled.div`
     border-radius: 20px;
@@ -44,7 +50,7 @@ export const ContainerDate = styled.div`
     border-radius: 0 0 15px 15px;
 `
 export const DateText = styled.p`
-    color: ${theme.colors.primary};
+    color: #fff;
     font-size: 18px;
     display: flex;
     padding-inline: 12px;

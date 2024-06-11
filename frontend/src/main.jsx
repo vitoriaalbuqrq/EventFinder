@@ -16,7 +16,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 //pages
 import Home from './routes/Home.jsx'
 import Event from './routes/Event.jsx'
-import CreateEvent from './routes/CreateEvent.jsx';
+import NewEvent from './routes/NewEvent.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/event/new",
-        element: <CreateEvent />,
+        element: <NewEvent />,
       },
       {
         path: "/event/:id",
