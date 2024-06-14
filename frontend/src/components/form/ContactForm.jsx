@@ -1,6 +1,6 @@
 import Input from '../form/Input';
 
-const ContactForm = ({ data }) => {
+const ContactForm = ({ data, updateFieldHandler }) => {
   return (
     <div className="form-control">
       <Input
@@ -21,7 +21,7 @@ const ContactForm = ({ data }) => {
         type="text"
         text="Telefone de contato"
         name="telephone"
-        value={data.imgEvent || ""}
+        value={data.telephone || ""}
         onChange={(e) => updateFieldHandler("telephone", e.target.value)}
       />
 

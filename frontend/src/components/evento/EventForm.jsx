@@ -1,25 +1,38 @@
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { FiSend } from "react-icons/fi";
-
 // Hooks
 import { useState } from "react";
 import { useForm } from "../hooks/useForm";
 
-// CSS
-import "./App.css";
+// Components
 import InfoForm from "../form/InfoForm";
 import AddressForm from "../form/AddressForm";
 import ContactForm from "../form/ContactForm";
 import Steps from "../form/Steps";
 
+// Styled components
+import {
+    AppContainer,
+    Header,
+    HeaderTitle,
+    HeaderDescription,
+    FormContainer,
+    Form,
+    InputsContainer,
+    Actions,
+    ActionButton
+} from "./EventForm.style";
+
+
 const formTemplate = {
     name: "",
     description: "",
-    imgEvent: "",
+    imgEvent: null,
     cep: "",
     address: "",
     city: "",
     state: "",
+    organizerName: "",
+    contactEmail: "",
+    telephone: "",
 };
 
 const EventForm = () => {
@@ -34,45 +47,54 @@ const EventForm = () => {
     const formComponents = [
         <InfoForm data={data} updateFieldHandler={updateFieldHandler} />,
         <AddressForm data={data} updateFieldHandler={updateFieldHandler} />,
-        <ContactForm data={data} />,
+        <ContactForm data={data} updateFieldHandler={updateFieldHandler} />,
     ];
 
     const { currentStep, currentComponent, changeStep, isLastStep } =
         useForm(formComponents);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (isLastStep) {
+            // Implementar a lógica de envio de dados aqui
+            console.log("Dados do formulário:", data);
+        } else {
+            changeStep(currentStep + 1);
+        }
+    };
+
     return (
-        <div className="app">
-            <div className="header">
-                <h2>Criar Novo Evento</h2>
-                <p>Forneça as informações necessárias sobre o seu evento no formulário abaixo para que possamos começar a promovê-lo imediatamente</p>
-            </div>
-            <div className="form-container">
+        <AppContainer>
+            <Header>
+                <HeaderTitle>Criar Novo Evento</HeaderTitle>
+                <HeaderDescription>
+                    Forneça as informações necessárias sobre o seu evento no formulário abaixo para que possamos começar a promovê-lo imediatamente
+                </HeaderDescription>
+            </Header>
+            <FormContainer>
                 <Steps currentStep={currentStep} />
-                <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
-                    <div className="inputs-container">{currentComponent}</div>
-                    <div className="actions">
-                        <button type="button" onClick={() => changeStep(currentStep - 1)}>
-                            <GrFormPrevious />
-                            <span>Voltar</span>
-                        </button>
-
-                        {!isLastStep ? (
-                            <button type="submit">
-                                <span>Avançar</span>
-                                <GrFormNext />
-                            </button>
-                        ) : (
-                            <button type="button">
-                                <span>Enviar</span>
-                                <FiSend />
-                            </button>
+                <Form onSubmit={handleSubmit}>
+                    <InputsContainer>{currentComponent}</InputsContainer>
+                    <Actions>
+                        {currentStep > 0 && (
+                            <ActionButton type="button" onClick={() => changeStep(currentStep - 1)}>
+                                <span>Voltar</span>
+                            </ActionButton>
                         )}
-                    </div>
-                </form>
-            </div>
-        </div>
+                        {!isLastStep ? (
+                            <ActionButton type="submit" primary>
+                                <span>Avançar</span>
+                            </ActionButton>
+                        ) : (
+                            <ActionButton type="button" primary onClick={handleSubmit}>
+                                <span>Enviar</span>
+                            </ActionButton>
+                        )}
+                    </Actions>
+                </Form>
+            </FormContainer>
+        </AppContainer>
     );
-
 }
 
-export default EventForm
+export default EventForm;

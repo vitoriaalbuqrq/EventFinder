@@ -1,5 +1,12 @@
-/* FileUpload.css */
-.file-upload-wrapper {
+import styled from 'styled-components';
+
+export const StyledLabel = styled.label`
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+`;
+
+export const FileUploadWrapper = styled.div`
     position: relative;
     width: 100%;
     height: auto;
@@ -10,14 +17,16 @@
     cursor: pointer;
     flex-direction: column;
     overflow: hidden;
+    border-radius: 10px;
     margin-bottom: 2rem;
-}
+    padding: 20px;
+`;
 
-.file-input {
+export const FileInput = styled.input`
     display: none;
-}
+`;
 
-.file-label {
+export const FileLabel = styled.label`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,59 +34,53 @@
     width: 100%;
     height: 100%;
     cursor: pointer;
-}
+`;
 
-.upload-icon {
+export const UploadIcon = styled.div`
     text-align: center;
     font-size: 70px;
     color: #b1b1b1;
-}
+`;
 
-.file-label span {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #666;
-}
-
-.file-info {
+export const FileInfo = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-}
+`;
 
-.upload-preview {
+export const UploadPreview = styled.div`
     width: 100%;
-    padding-bottom: 100%; /* Altura relativa à largura do contêiner */
+    padding-bottom: 100%;
     position: relative;
-  }
+`;
 
-.upload-preview img {
+export const PreviewImage = styled.img`
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* Ajusta a largura da imagem para preencher o contêiner */
-    height: 100%; /* Ajusta a altura da imagem para preencher o contêiner */
-    object-fit: contain; /* Mantém a proporção da imagem e ajusta seu tamanho para preencher o contêiner */
-  }
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+`;
 
-.file-details {
+export const FileDetails = styled.div`
     display: flex;
     align-items: center;
     margin-top: 10px;
     width: 100%;
     justify-content: space-between;
     padding: 0 10px;
-}
+`;
 
-.file-details span {
+export const FileName = styled.span`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: calc(100% - 30px);
-}
+`;
 
-.remove-button {
+export const RemoveButton = styled.button`
     background: none;
     border: none;
     color: #f44336;
@@ -85,8 +88,8 @@
     font-size: 16px;
     display: flex;
     align-items: center;
-}
 
-.remove-button:hover {
-    color: #d32f2f;
-}
+    &:hover {
+        color: #d32f2f;
+    }
+`;

@@ -1,4 +1,3 @@
-import "./AddressForm.css";
 import Input from '../form/Input';
 
 const AddressForm = ({ data, updateFieldHandler }) => {

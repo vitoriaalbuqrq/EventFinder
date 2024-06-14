@@ -1,24 +1,24 @@
+import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
-
-import "./Steps.css"
+import { StepsContainer, Step } from "./Steps.style";
 
 const Steps = ({ currentStep }) => {
     return (
-        <div className='steps'>
-            <div className="step active">
+        <StepsContainer>
+            <Step className="active">
                 <FaCheckCircle />
                 <p>Informações</p>
-            </div>
-            <div className={`step ${currentStep >= 1 ? "active" : ""}`}>
+            </Step>
+            <Step className={currentStep >= 1 ? "active" : ""}>
                 <FaCheckCircle />
                 <p>Endereço</p>
-            </div>
-            <div className={`step ${currentStep >= 2 ? "active" : ""}`}>
+            </Step>
+            <Step className={currentStep >= 2 ? "active" : ""}>
                 <FaCheckCircle />
                 <p>Contato</p>
-            </div>
-        </div>
-    )
+            </Step>
+        </StepsContainer>
+    );
 }
 
-export default Steps
+export default Steps;
