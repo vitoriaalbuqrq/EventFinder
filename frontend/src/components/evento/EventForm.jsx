@@ -26,6 +26,7 @@ const formTemplate = {
     name: "",
     description: "",
     imgEvent: null,
+    platform: "",
     cep: "",
     address: "",
     city: "",
@@ -33,6 +34,9 @@ const formTemplate = {
     organizerName: "",
     contactEmail: "",
     telephone: "",
+    startDate: "",
+    startTime: "",
+    endTime: "",
 };
 
 const EventForm = () => {

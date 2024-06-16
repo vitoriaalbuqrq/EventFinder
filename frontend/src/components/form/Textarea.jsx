@@ -22,7 +22,7 @@ const StyledTextarea = styled.textarea`
     }
 `
 
-const Textarea = ({ type, text, name, placeholder, onChange, value}) => {
+const Textarea = ({ type, text, name, placeholder, onChange, value, required}) => {
   return (
     <TextareaContainer>
         <StyledLabel htmlFor={name}>{text}</StyledLabel>
@@ -33,6 +33,7 @@ const Textarea = ({ type, text, name, placeholder, onChange, value}) => {
             placeholder={placeholder}
             onChange={onChange}
             value={value}
+            required={required}
         />
     </TextareaContainer>
   )

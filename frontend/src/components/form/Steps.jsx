@@ -11,7 +11,7 @@ const Steps = ({ currentStep }) => {
             </Step>
             <Step className={currentStep >= 1 ? "active" : ""}>
                 <FaCheckCircle />
-                <p>Endereço</p>
+                <p>Localização</p>
             </Step>
             <Step className={currentStep >= 2 ? "active" : ""}>
                 <FaCheckCircle />

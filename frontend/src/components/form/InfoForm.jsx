@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Input from '../form/Input';
 import Textarea from '../form/Textarea';
 import Uploader from './Uploader';
+import Select from './Select';
 
 const InfoForm = ({ data, updateFieldHandler }) => {
+    const [categories, setCategories] = useState([]);
     const [file, setFile] = useState(null);
 
     const handleFileChange = (selectedFile) => {
@@ -31,8 +33,18 @@ const InfoForm = ({ data, updateFieldHandler }) => {
                 text="Descrição"
                 name="description"
                 value={data.description || ""}
+                required={true}
                 placeholder="Insira uma descrição do evento"
                 onChange={(e) => updateFieldHandler("description", e.target.value)}
+            />
+            <Select
+                text="Categoria"
+                name="category"
+                value={data.name || ""}
+                required={true}
+                options={categories}
+                onChange={(e) => updateFieldHandler("category", e.target.value)}
+
             />
             <Uploader
                 name="imgEvent"

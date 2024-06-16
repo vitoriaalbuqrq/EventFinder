@@ -8,6 +8,7 @@ const ContactForm = ({ data, updateFieldHandler }) => {
         text="Nome do organizador ou empresa"
         name="organizerName"
         value={data.organizerName || ""}
+        required={true}
         onChange={(e) => updateFieldHandler("organizerName", e.target.value)}
       />
       <Input

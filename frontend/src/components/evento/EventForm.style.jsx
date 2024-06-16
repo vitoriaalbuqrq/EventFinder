@@ -66,3 +66,10 @@ export const ActionButton = styled.button`
         opacity: 0.9;
     }
 `;
+
+export const ContainerFlex = styled.div`
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+`
