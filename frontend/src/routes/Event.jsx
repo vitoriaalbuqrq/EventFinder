@@ -6,6 +6,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import styled from 'styled-components'
 import theme from '../theme'
+import defaultImage from '../assets/defaultEvent.png'
 
 const SectionEvent = styled.section`
   padding: 2rem 8rem;
@@ -47,7 +48,7 @@ const Event = () => {
   return (
     <>
       <HeaderEvent
-        img={event.imgEvent}
+        img={event.imgEvent || defaultImage}
         name={event.name}
         organizerName={event.organizerName}
         startDate={event.startDate}
@@ -59,17 +60,17 @@ const Event = () => {
       <SectionEvent>
         <LeftSection>
           <h2>Descrição</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus error enim repudiandae, tenetur illo voluptas omnis, ab pariatur deleniti iure beatae saepe eligendi eaque. Laudantium itaque possimus aut at quas. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus error enim repudiandae, tenetur illo voluptas omnis, ab pariatur deleniti iure beatae saepe eligendi eaque. Laudantium itaque possimus aut at quas. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus error enim repudiandae, tenetur illo voluptas omnis, ab pariatur deleniti iure beatae saepe eligendi eaque. Laudantium itaque possimus aut at quas.</p>
+          <p>{event.description}</p>
         </LeftSection>
         <RightSection>
           <h2>Entre em Contato</h2>
           <div>
             <MdEmail className='icon' />
-            <p>eventfinder@gmail.com</p>
+            <p>{event.contactEmail}</p>
           </div>
           <div>
             <FaPhoneAlt className='icon' />
-            <p>(99) 99999-9999</p>
+            <p>{event.telephone}</p>
           </div>
         </RightSection>
       </SectionEvent>
@@ -79,7 +80,7 @@ const Event = () => {
           <h2>Localização</h2>
           <div>
             <FaLocationDot className='icon'/>
-            <p>{event.address} - {event.state}</p>
+            <p>{event.street}, nº {event.number}, {event.city}-{event.state}</p>
           </div>
         </RightSection>
       </SectionEvent>

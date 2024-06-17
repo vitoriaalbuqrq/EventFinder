@@ -16,6 +16,23 @@ const AddressForm = ({ data, updateFieldHandler }) => {
     }
   }
 
+  function onBlurCep(ev, updateFieldHandler) {
+    const { value } = ev.target;
+    const cep = value?.replace(/[^0-9]/g, '')
+
+    if (cep?.length !== 8) {
+      return;
+    }
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        updateFieldHandler('street', data.logradouro)
+        updateFieldHandler('neighborhood', data.bairro)
+        updateFieldHandler('city', data.localidade)
+        updateFieldHandler('state', data.uf)
+      })
+  }
+
   return (
     <div className="form-control">
       <Checkbox
@@ -41,13 +58,21 @@ const AddressForm = ({ data, updateFieldHandler }) => {
             name="cep"
             value={data.cep || ""}
             onChange={(e) => updateFieldHandler("cep", e.target.value)}
+            onBlur={(ev) => onBlurCep(ev, updateFieldHandler)}
           />
           <Input
             type="text"
-            text="Endereço"
-            name="address"
-            value={data.address || ""}
-            onChange={(e) => updateFieldHandler("address", e.target.value)}
+            text="Logradouro"
+            name="street"
+            value={data.street || ""}
+            onChange={(e) => updateFieldHandler("street", e.target.value)}
+          />
+          <Input
+            type="text"
+            text="Bairro"
+            name="neighborhood"
+            value={data.neighborhood || ""}
+            onChange={(e) => updateFieldHandler("neighborhood", e.target.value)}
           />
           <Input
             type="text"
@@ -63,6 +88,15 @@ const AddressForm = ({ data, updateFieldHandler }) => {
             value={data.state || ""}
             onChange={(e) => updateFieldHandler("state", e.target.value)}
           />
+          <Input
+            type="text"
+            text="Número"
+            name="number"
+            value={data.number || ""}
+            required={true}
+            onChange={(e) => updateFieldHandler("number", e.target.value)}
+          />
+
         </>
       )}
       <Input

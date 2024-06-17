@@ -20,7 +20,7 @@ const StyledInput = styled.input`
     }
 `
 
-const Input = ({ type, text, name, placeholder, onChange, value, required}) => {
+const Input = ({ type, text, name, placeholder, onChange, onBlur, value, required}) => {
   return (
     <InputContainer>
         <StyledLabel htmlFor={name}>{text}</StyledLabel>
@@ -32,6 +32,7 @@ const Input = ({ type, text, name, placeholder, onChange, value, required}) => {
             onChange={onChange}
             required={required}
             value={value}
+            onBlur={onBlur}
         />
     </InputContainer>
   )

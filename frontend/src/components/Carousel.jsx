@@ -1,9 +1,25 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FaLocationDot } from "react-icons/fa6";
-import { SectionTitle, ImgCard, CardContainer, CardImg, ContainerDate, DateText, CardInfo, CardWrapper, CustomNavigation } from './Caurousel.style';
 import { useEffect, useState } from 'react';
 import eventFetch from "../axios/config";
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import theme from '../theme';
+import CardEvent from './CardEvent';
+
+const CustomNavigation = styled.div`
+    color: ${theme.colors.main_color};
+    `;
+
+const CardContainer = styled.div`
+    padding-inline: 60px;
+    text-align: center;
+`;
+
+const SectionTitle = styled.h1`
+    color: ${theme.colors.secondary};
+    text-align: center;
+    margin-bottom: 2rem;
+`
 
 const Carousel = () => {
   const [data, setData] = useState([]);
@@ -40,25 +56,7 @@ const Carousel = () => {
       >
         {data.map((item) => (
           <SwiperSlide key={item.id}>
-            <CardWrapper onClick={() => handleCardClick(item)}>
-              <CardImg>
-                <ImgCard
-                  src={item.imgEvent}
-                  alt='slider'
-                  className='slide-item'
-                />
-                <ContainerDate>
-                  <DateText><span>{new Date(item.startDate).getDate()}</span>{new Date(item.startDate).toLocaleString('default', { month: 'long' })}</DateText>
-                </ContainerDate>
-              </CardImg>
-              <CardInfo>
-                <p>{item.name}</p>
-                <div>
-                  <FaLocationDot />
-                  <small>{item.city}</small>
-                </div>
-              </CardInfo>
-            </CardWrapper>
+            <CardEvent event={item} onClick={() => handleCardClick(item)} />
           </SwiperSlide>
         ))}
 

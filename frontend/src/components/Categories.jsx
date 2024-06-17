@@ -1,8 +1,11 @@
 import { Container, CardCategory, Icon, Text} from './Categories.style';
 import { FaChalkboardTeacher, FaGlobe, FaBookOpen , FaUsers, FaEllipsisH} from "react-icons/fa";
 import { BsFillMusicPlayerFill } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom';
 
 const Categories = () => {
+  const navigate = useNavigate();
+
   const categoryData = [
     { text: "Shows e Festivais", icon: BsFillMusicPlayerFill },
     { text: "Workshops", icon: FaChalkboardTeacher },
@@ -12,41 +15,19 @@ const Categories = () => {
     { text: "Outros", icon: FaEllipsisH }
   ];
 
+  const handleCategoryClick = (category) => {
+    navigate(`/events/${category}`)
+  }
+
   return (
     <Container>
       {categoryData.map((category, index) => (
-        <CardCategory key={index}>
-          {category.icon && <Icon as={category.icon} />} {/* Renderizar o ícone se existir */}
+        <CardCategory key={index} onClick={() => handleCategoryClick(category.text)}>
+          {category.icon && <Icon as={category.icon} />} 
           <Text>{category.text}</Text>
         </CardCategory>
       ))}
     </Container>
-
-    // <Container>
-    //     <CardCategory>
-    //         <Icon/>
-    //         <Text>Shows e<br/>Festivais</Text>
-    //     </CardCategory>
-    //     <CardCategory>
-    //         <Icon/>
-    //         <Text>Workshops</Text>
-    //     </CardCategory>
-    //     <CardCategory>
-    //         <Icon/>
-    //         <Text>Online</Text>
-    //     </CardCategory>
-    //     <CardCategory>
-    //         <Icon/>
-    //         <Text>Educação</Text>
-    //     </CardCategory>
-    //     <CardCategory>
-    //         <Icon/>
-    //         <Text>Social</Text>
-    //     </CardCategory>
-    //     <CardCategory>
-    //         <Text>Outros</Text>
-    //     </CardCategory>
-    // </Container>
   )
 }
 

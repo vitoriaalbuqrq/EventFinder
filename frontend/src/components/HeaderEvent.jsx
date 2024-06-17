@@ -22,7 +22,7 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, rgba(64, 75, 227, 0.6), rgba(64, 75, 227, 0.1));
+  background: linear-gradient(to right, rgba(64, 75, 227, 0.4), rgba(64, 75, 227, 0.1));
   display: flex;
   flex-direction: column;
   justify-content: center;

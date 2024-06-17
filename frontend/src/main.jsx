@@ -17,6 +17,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './routes/Home.jsx'
 import Event from './routes/Event.jsx'
 import NewEvent from './routes/NewEvent.jsx';
+import Events from './routes/Events.jsx';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/event/:id",
         element: <Event />,
+      },
+      {
+        path: "/events/:category",
+        element: <Events />,
       },
     ],
   },

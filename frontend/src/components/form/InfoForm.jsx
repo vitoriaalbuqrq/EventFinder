@@ -3,9 +3,9 @@ import Input from '../form/Input';
 import Textarea from '../form/Textarea';
 import Uploader from './Uploader';
 import Select from './Select';
+import { categoryOptions } from './CategoryOptions';
 
 const InfoForm = ({ data, updateFieldHandler }) => {
-    const [categories, setCategories] = useState([]);
     const [file, setFile] = useState(null);
 
     const handleFileChange = (selectedFile) => {
@@ -42,7 +42,7 @@ const InfoForm = ({ data, updateFieldHandler }) => {
                 name="category"
                 value={data.name || ""}
                 required={true}
-                options={categories}
+                options={categoryOptions}
                 onChange={(e) => updateFieldHandler("category", e.target.value)}
 
             />
