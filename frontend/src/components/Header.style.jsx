@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../theme'
 
 export const HeaderWrapper = styled.header`
     width: 100%;
@@ -35,29 +36,86 @@ export const SloganHeader = styled.h1`
 `;
 
 export const SearchContainer = styled.div`
+    padding: 0 4rem;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 50px;
     gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
 `;
 
-const inputSearch = `
-    background-color:#fff;
+export const CustomInput = styled.div`
+    background-color: #fff;
     height: 40px;
     border-radius: 20px;
-    border: none;
-    outline: none;
+    padding-left: 10px;
+    text-align: start;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex: 2.5;
+    border: 1px solid #ccc;
+    min-width: 200px;
+    overflow: hidden;
+
+    input {
+        width: 100%;
+        padding: 5px;
+        font-size: 16px;
+        border: none;
+        outline: none;
+    }
 `;
 
-export const CustomInput = styled.input`
-    ${inputSearch};
-    width: 50%;
-    padding: 10px;
+export const Icon = styled.div`
+    color: #7c7c7c;
+    margin-right: 10px;
+`;
+
+export const CustomSelectWrapper = styled.div`
+    position: relative;
+    flex: 1;
+    /* width: 200px; Ajuste conforme necessário */
+`;
+
+export const CustomSelect = styled.div`
+    background-color: #fff;
+    height: 40px;
+    border-radius: 20px;
+    padding-left: 10px;
     font-size: 16px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    overflow: hidden;
 `;
 
-export const CustomSelect = styled.select`
-    ${inputSearch};
-    width: 20%;
+export const OptionsList = styled.ul`
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: ${({ open }) => (open ? 'block' : 'none')};
+    z-index: 10;
 `;
+
+export const OptionItem = styled.li`
+    padding: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f0f0f0;
+    }
+`;
+

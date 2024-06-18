@@ -7,6 +7,7 @@ import theme from '../theme';
 const CardWrapper = styled.div`
     border-radius: 20px;
     padding: 5px;
+    min-width: 310px;
     transition: all 0.3s ease;
     cursor: pointer;
 
@@ -17,8 +18,8 @@ const CardWrapper = styled.div`
 `;
 const CardImg = styled.div`
     position: relative;
-    width: auto; 
     height: 200px;
+    width: 100%;
     border: 1px solid ${theme.colors.main_color};
     border-radius: 20px 20px 0 0 ;
 `;
@@ -26,7 +27,6 @@ const CardImg = styled.div`
 const ImgCard = styled.img`
     width: 100%;
     height: 100%;
-    min-width: 350px;
     object-fit: cover;
     border-radius: 20px 20px 0 0;
 
@@ -43,10 +43,9 @@ const ContainerDate = styled.div`
 `
 const DateText = styled.p`
     color: #fff;
-    font-size: 16px;
+    font-size: 15px;
     display: flex;
     min-width: 95px;
-    padding-inline: 5px;
     padding-block: 8px;
     flex-direction: column;
     line-height: 28px;

@@ -40,7 +40,7 @@ const InfoForm = ({ data, updateFieldHandler }) => {
             <Select
                 text="Categoria"
                 name="category"
-                value={data.name || ""}
+                value={data.category || ""}
                 required={true}
                 options={categoryOptions}
                 onChange={(e) => updateFieldHandler("category", e.target.value)}

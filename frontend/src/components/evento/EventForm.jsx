@@ -1,7 +1,8 @@
 // Hooks
 import { useState } from "react";
 import { useForm } from "../hooks/useForm";
-
+import eventFetch from "../../axios/config";
+import { useNavigate } from 'react-router-dom'
 // Components
 import InfoForm from "../form/InfoForm";
 import AddressForm from "../form/AddressForm";
@@ -44,6 +45,8 @@ const formTemplate = {
 
 const EventForm = () => {
     const [data, setData] = useState(formTemplate);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const updateFieldHandler = (key, value) => {
         setData((prev) => {
@@ -60,11 +63,24 @@ const EventForm = () => {
     const { currentStep, currentComponent, changeStep, isLastStep } =
         useForm(formComponents);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (isLastStep) {
-            // Implementar a lógica de envio de dados aqui
-            console.log("Dados do formulário:", data);
+            try {
+                setLoading(true);
+                const response = await eventFetch.post("/events", data);
+                console.log("Resposta do servidor:", response.data); 
+
+                if (response.data.id) {
+                    navigate(`/event/${response.data.id}`);
+                } else {
+                    console.error("Erro: Resposta inválida do servidor");
+                }
+            } catch (error) {
+                console.error("Erro ao enviar dados:", error);
+            } finally {
+                setLoading(false);
+            }
         } else {
             changeStep(currentStep + 1);
         }

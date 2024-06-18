@@ -1,28 +1,28 @@
+import React from "react";
 import bannerEvent from "../assets/bannerEvent.jpg";
-import { HeaderWrapper, BannerImage, HeaderContainer,SloganHeader, SearchContainer, CustomInput, CustomSelect} from './Header.style';
+import { HeaderWrapper, BannerImage, HeaderContainer, SloganHeader } from './Header.style';
+import Search from "./Search";
 
-const Header = () => {
+const Header = ({ searchTerm, setSearchTerm, selectedLocation, setSelectedLocation }) => {
   return (
     <HeaderWrapper>
-      <BannerImage src={bannerEvent} alt="banner"/>
-      
+      <BannerImage src={bannerEvent} alt="banner" />
+
       <HeaderContainer>
         <SloganHeader>
           O poder de divulgação está em suas mãos.
           Cadastre e gerencie seus eventos
         </SloganHeader>
 
-        <SearchContainer>
-          <CustomInput type="text" placeholder="Pesquise por um evento..."/>
-          <CustomSelect>
-            <option value="Localização">Localização</option>
-          </CustomSelect>
-        </SearchContainer>
-
+        <Search
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          selectedLocation={selectedLocation}
+          setSelectedLocation={setSelectedLocation}
+        />
       </HeaderContainer>
     </HeaderWrapper>
+  );
+};
 
-  )
-}
-
-export default Header
+export default Header;
