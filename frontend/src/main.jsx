@@ -19,6 +19,7 @@ import Event from './routes/Event.jsx'
 import NewEvent from './routes/NewEvent.jsx';
 import Events from './routes/Events.jsx';
 import MyEvents from './routes/MyEvents.jsx';
+import EditEvent from './routes/EditEvent.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,8 +31,12 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/myevents",
+        path: "/my-events",
         element: <MyEvents />,
+      },
+      {
+        path: "/event/edit/:id",
+        element: <EditEvent />,
       },
       {
         path: "/event/new",

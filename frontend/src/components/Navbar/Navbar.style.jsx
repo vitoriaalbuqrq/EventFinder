@@ -14,4 +14,14 @@ export const NavbarList = styled.ul`
     justify-content: space-between;
     align-items: center;
     list-style: none;
-`;
+    `;
+
+export const LeftList = styled.div`
+
+`
+
+export const RightList = styled.div`
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+`

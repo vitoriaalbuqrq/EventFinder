@@ -18,7 +18,7 @@ const CardContainer = styled.div`
 const SectionTitle = styled.h1`
     color: ${theme.colors.secondary};
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 `
 
 const Carousel = () => {

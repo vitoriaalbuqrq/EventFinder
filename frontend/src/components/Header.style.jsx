@@ -40,9 +40,9 @@ export const SearchContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 20px;
     gap: 10px;
-    padding: 20px;
+    padding: 5rem;
     border-radius: 10px;
 `;
 
