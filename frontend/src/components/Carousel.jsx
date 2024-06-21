@@ -38,7 +38,7 @@ const Carousel = () => {
   }, [])
 
   const handleCardClick = (event) => {
-    navigate(`/event/${event.id}`, {state: {event}});
+    navigate(`/event/${event._id}`, {state: {event}});
   }
 
   return (

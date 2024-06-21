@@ -1,48 +1,64 @@
-import React from 'react'
-import HeaderEvent from '../components/HeaderEvent'
-import { useLocation } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import HeaderEvent from '../components/HeaderEvent';
+import { useLocation, useParams } from 'react-router-dom';
 import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-import styled from 'styled-components'
-import theme from '../theme'
-import defaultImage from '../assets/defaultEvent.png'
+import styled from 'styled-components';
+import theme from '../theme';
+import defaultImage from '../assets/defaultEvent.png';
+import eventFetch from '../axios/config'; // Importe seu cliente axios configurado
 
 const SectionEvent = styled.section`
   padding: 2rem 8rem;
   display: flex;
   gap: 7rem;
 
-  h2{
+  h2 {
     margin-bottom: 20px;
     color: ${theme.colors.secondary};
   }
-`
+`;
+
 const LeftSection = styled.section`
   flex: 2;
-`
+`;
+
 const RightSection = styled.div`
   flex: 1;
 
-  div{
+  div {
     display: flex;
     align-items: center;
     gap: 10px;
     text-align: center;
   }
-  .icon{
+  
+  .icon {
     font-size: 22px;
-    color: #535353
+    color: #535353;
   }
-
-`
+`;
 
 const Event = () => {
-  const location = useLocation();
-  const { event } = location.state || {};
+  const { id } = useParams(); // Obtém o ID da rota
+  const [event, setEvent] = useState(null);
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const response = await eventFetch.get(`/event/${id}`); // Faz a requisição GET usando o ID
+        setEvent(response.data); // Atualiza o estado do evento com os dados recebidos
+      } catch (error) {
+        console.error('Erro ao buscar detalhes do evento:', error);
+      }
+    };
+
+    fetchEvent();
+  }, [id]); // Executa novamente o fetch quando o ID muda
 
   if (!event) {
-    return <div>Evento não encontrado</div>
+    return <div>Carregando...</div>; // Pode ser interessante mostrar um indicador de carregamento
   }
 
   return (
@@ -54,8 +70,7 @@ const Event = () => {
         startDate={event.startDate}
         startTime={event.startTime}
         endTime={event.endTime}
-      >
-      </HeaderEvent>
+      />
 
       <SectionEvent>
         <LeftSection>
@@ -84,9 +99,8 @@ const Event = () => {
           </div>
         </RightSection>
       </SectionEvent>
-
     </>
-  )
-}
+  );
+};
 
-export default Event
+export default Event;

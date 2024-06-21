@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const partyFetch = axios.create({
-  baseURL: "http://demo9128764.mockable.io/",
+const eventFetch = axios.create({
+  baseURL: "http://localhost:3000/api/",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-export default partyFetch;
+export default eventFetch;

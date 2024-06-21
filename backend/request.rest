@@ -1,0 +1,55 @@
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+    "name": "Evento Culinaria",
+    "description": "Degustação e conhecimento",
+    "imgEvent": "https://www.collinsdictionary.com/images/full/party_492006757_1000.jpg",
+    "category": "Outros",
+    "cep": "12345-678",
+    "street": "Rua das Flores",
+    "neighborhood": "Centro",
+    "city": "São Paulo",
+    "state": "SP",
+    "number": "23",
+    "contactEmail": "contato@event.com",
+    "endTime": "23:00",
+    "organizerName": "EventShow",
+    "startDate": "2024-07-15",
+    "startTime": "20:00",
+    "state": "SP",
+    "telephone": "11 98765-4321"
+}
+
+###
+GET http://localhost:3000/api/events
+
+###
+GET http://localhost:3000/api/event/6674e4a537ad4f7cbfbd12ca
+
+###
+DELETE http://localhost:3000/api/event/6674be988df47c28d78dc405
+
+###
+PUT http://localhost:3000/api/event/6674b0b7e67b02eb2565b2a8
+Content-Type: application/json
+
+{
+    "name": "Evento Culinaria",
+    "description": "Degustação e conhecimento",
+    "imgEvent": "https://www.collinsdictionary.com/images/full/party_492006757_1000.jpg",
+    "category": "Outros",
+    "cep": "12345-678",
+    "street": "Rua das Flores",
+    "neighborhood": "Centro",
+    "city": "São Paulo",
+    "state": "SP",
+    "number": "23",
+    "contactEmail": "contato@event.com",
+    "endTime": "23:00",
+    "organizerName": "EventShow",
+    "startDate": "2024-07-15",
+    "startTime": "20:00",
+    "state": "SP",
+    "telephone": "11 98765-4321"
+}
