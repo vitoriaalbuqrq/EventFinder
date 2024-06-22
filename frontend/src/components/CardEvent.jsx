@@ -3,6 +3,7 @@ import defaultImage from '../assets/defaultEvent.png'
 import { FaLocationDot } from "react-icons/fa6";
 import theme from '../theme';
 
+const BASE_URL = 'http://localhost:3000';
 
 const CardWrapper = styled.div`
     border-radius: 20px;
@@ -79,31 +80,37 @@ const CardInfo = styled.div`
 
 `
 
-const CardEvent = ({ event, onClick, noBorderRadius, children }) => (
-    <CardWrapper>
-        <CardMain onClick={onClick}>
-            <CardImg>
-                <ImgCard
-                    src={event.imgEvent || defaultImage}
-                    alt='event'
-                />
-                <ContainerDate>
-                    <DateText>
-                        <span>{new Date(event.startDate).getDate()}</span>
-                        {new Date(event.startDate).toLocaleString('default', { month: 'long' })}
-                    </DateText>
-                </ContainerDate>
-            </CardImg>
-            <CardInfo noBorderRadius={noBorderRadius}>
-                <p>{event.name}</p>
-                <div>
-                    <FaLocationDot />
-                    <small>{event.city}</small>
-                </div>
-            </CardInfo>
-        </CardMain>
-        {children}
-    </CardWrapper>
-);
-export default CardEvent
+const CardEvent = ({ event, onClick, noBorderRadius, children }) => {
+    // Cria a URL completa para a imagem do evento
+    const imageUrl = event.imgEvent ? `${BASE_URL}${event.imgEvent}` : defaultImage;
+    
+    return (
+        <CardWrapper>
+            <CardMain onClick={onClick}>
+                <CardImg>
+                    <ImgCard
+                        src={imageUrl}
+                        alt='event'
+                    />
+                    <ContainerDate>
+                        <DateText>
+                            <span>{new Date(event.startDate).getDate()}</span>
+                            {new Date(event.startDate).toLocaleString('default', { month: 'long' })}
+                        </DateText>
+                    </ContainerDate>
+                </CardImg>
+                <CardInfo noBorderRadius={noBorderRadius}>
+                    <p>{event.name}</p>
+                    <div>
+                        <FaLocationDot />
+                        <small>{event.city}</small>
+                    </div>
+                </CardInfo>
+            </CardMain>
+            {children}
+        </CardWrapper>
+    );
+};
+
+export default CardEvent;
 

@@ -6,6 +6,9 @@ app.use(cors());
 
 app.use(express.json());
 
+// Serve arquivos estáticos da pasta "uploads"
+app.use('/uploads', express.static('uploads'));
+
 // DB Connection
 const conn = require("./db/conn");
 conn();

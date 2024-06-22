@@ -9,17 +9,27 @@ const Wrapper = styled.div`
     text-align: center;
     padding: 3rem 6rem;
 
-    h1{
+    h1 {
         margin-bottom: 3rem;
         color: ${theme.colors.secondary};
     }
-`
+`;
+
 const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-`
+`;
+
+const categoryMap = {
+    'shows e festivais': 'shows',
+    'workshops': 'workshops',
+    'online': 'online',
+    'educacao': 'educacao',
+    'social': 'social',
+    'outros': 'outros'
+};
 
 const Events = () => {
     const { category } = useParams();
@@ -49,13 +59,21 @@ const Events = () => {
 
     useEffect(() => {
         if (events.length > 0 && category) {
-            const filtered = events.filter(event => event.category === category);
+            const normalizedCategory = decodeURIComponent(category).toLowerCase().trim();
+            const mappedCategory = categoryMap[normalizedCategory] || normalizedCategory;
+            
+            // Verifica se a categoria do evento corresponde à categoria mapeada
+            const filtered = events.filter(event =>
+                event.category.toLowerCase() === mappedCategory
+            );
             setFilteredEvents(filtered);
+        } else {
+            setFilteredEvents(events);
         }
     }, [events, category]);
 
     const handleCardClick = (event) => {
-        navigate(`/event/${event.id}`, { state: { event } });
+        navigate(`/event/${event._id}`, { state: { event } });
     }
 
     if (loading) {
@@ -72,7 +90,7 @@ const Events = () => {
             <Container>
                 {filteredEvents.length > 0 ? (
                     filteredEvents.map(event => (
-                        <CardEvent event={event} onClick={() => handleCardClick(event)} />
+                        <CardEvent key={event._id} event={event} onClick={() => handleCardClick(event)} />
                     ))
                 ) : (
                     <p>Nenhum evento encontrado para esta categoria.</p>

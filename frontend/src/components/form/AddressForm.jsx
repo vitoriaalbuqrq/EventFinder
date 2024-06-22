@@ -57,6 +57,7 @@ const AddressForm = ({ data, updateFieldHandler }) => {
             text="CEP"
             name="cep"
             value={data.cep || ""}
+            required={true}
             onChange={(e) => updateFieldHandler("cep", e.target.value)}
             onBlur={(ev) => onBlurCep(ev, updateFieldHandler)}
           />
@@ -65,12 +66,14 @@ const AddressForm = ({ data, updateFieldHandler }) => {
             text="Logradouro"
             name="street"
             value={data.street || ""}
+            required={true}
             onChange={(e) => updateFieldHandler("street", e.target.value)}
           />
           <Input
             type="text"
             text="Bairro"
             name="neighborhood"
+            required={true}
             value={data.neighborhood || ""}
             onChange={(e) => updateFieldHandler("neighborhood", e.target.value)}
           />
@@ -112,6 +115,7 @@ const AddressForm = ({ data, updateFieldHandler }) => {
           text="Hora de início"
           name="startTime"
           value={data.startTime || ""}
+          required={true}
           onChange={(e) => updateFieldHandler("startTime", e.target.value)}
         />
         <Input
@@ -119,6 +123,7 @@ const AddressForm = ({ data, updateFieldHandler }) => {
           text="Hora de término"
           name="endTime"
           value={data.endTime || ""}
+          required={true}
           onChange={(e) => updateFieldHandler("endTime", e.target.value)}
         />
       </ContainerFlex>

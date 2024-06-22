@@ -72,7 +72,7 @@ const Carousel = () => {
         spaceBetween={15}
       >
         {data.map((item) => (
-          <SwiperSlide key={item.id}>
+          <SwiperSlide key={item._id}>
             <CardEvent event={item} onClick={() => handleCardClick(item)} />
           </SwiperSlide>
         ))}

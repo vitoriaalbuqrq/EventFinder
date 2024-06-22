@@ -1,4 +1,3 @@
-// src/data/categoryOptions.js
 export const categoryOptions = [
     { id: 'shows', name: 'Shows e Festivais' },
     { id: 'workshops', name: 'Workshops' },
