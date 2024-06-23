@@ -30,7 +30,7 @@ const ActionButton = styled.button`
         border-radius: 0 0 0 20px;
     }
     &:nth-child(2) {
-        background-color: #969696;
+        background-color: ${theme.colors.red};
         color: #fff;
         border-radius: 0 0 20px 0;
     }

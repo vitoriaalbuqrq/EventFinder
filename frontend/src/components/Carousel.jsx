@@ -46,7 +46,7 @@ const Carousel = () => {
       <SectionTitle>Eventos Recentes</SectionTitle>
       <Swiper
         slidesPerView={3}
-        // pagination={{ clickable: true }}
+        pagination={{ clickable: true }}
         navigation={{
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',

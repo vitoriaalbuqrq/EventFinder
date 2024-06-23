@@ -8,7 +8,8 @@ const BASE_URL = 'http://localhost:3000';
 const CardWrapper = styled.div`
     border-radius: 20px;
     padding: 5px;
-    min-width: 310px;
+    width: 380px;
+    /* min-width: 310px; */
     transition: all 0.3s ease;
     cursor: pointer;
 

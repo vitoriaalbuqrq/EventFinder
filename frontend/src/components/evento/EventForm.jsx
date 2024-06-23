@@ -1,5 +1,4 @@
-// Hooks
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "../hooks/useForm";
 import eventFetch from "../../axios/config";
 import { useNavigate } from 'react-router-dom'
@@ -22,7 +21,6 @@ import {
     ActionButton
 } from "./EventForm.style";
 
-
 const formTemplate = {
     name: "",
     description: "",
@@ -43,10 +41,28 @@ const formTemplate = {
     endTime: "",
 };
 
-const EventForm = () => {
+const EventForm = ({ eventId, isEditMode }) => {
     const [data, setData] = useState(formTemplate);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isEditMode && eventId) {
+            const fetchEvent = async () => {
+                try {
+                    const response = await eventFetch.get(`/event/${eventId}`);
+                    if (response.data) {
+                        setData(response.data);
+                    }
+                } catch (error) {
+                    console.error("Erro ao carregar dados do evento:", error);
+                    setError("Erro ao carregar dados do evento");
+                }
+            };
+            fetchEvent();
+        }
+    }, [isEditMode, eventId]);
 
     const updateFieldHandler = (key, value) => {
         setData((prev) => {
@@ -73,15 +89,26 @@ const EventForm = () => {
                     formData.append(key, data[key]);
                 }
 
-                const response = await eventFetch.post("/events", formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                });
+                let response;
+                if (isEditMode) {
+                    response = await eventFetch.put(`/event/${eventId}`, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    });
+                } else {
+                    response = await eventFetch.post("/events", formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    });
+                }
+
                 console.log("Resposta do servidor:", response.data);
 
-                if (response.data.response._id) {
-                    navigate(`/event/${response.data.response._id}`);
+                if (response.status === 200 && response.data.event) {
+                    console.log("Evento atualizado com sucesso:", response.data.msg);
+                    navigate(`/my-events`);
                 } else {
                     console.error("Erro: Resposta inválida do servidor");
                 }
@@ -96,13 +123,23 @@ const EventForm = () => {
     };
 
 
+    if (loading) {
+        return <div>Carregando...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
 
     return (
         <AppContainer>
             <Header>
-                <HeaderTitle>Criar Novo Evento</HeaderTitle>
+                <HeaderTitle>{isEditMode ? "Editar Evento" : "Criar Novo Evento"}</HeaderTitle>
                 <HeaderDescription>
-                    Forneça as informações necessárias sobre o seu evento no formulário abaixo para que possamos começar a promovê-lo imediatamente
+                    {isEditMode
+                        ? "Modifique as informações necessárias sobre o seu evento no formulário abaixo."
+                        : "Forneça as informações necessárias sobre o seu evento no formulário abaixo para que possamos começar a promovê-lo imediatamente."
+                    }
                 </HeaderDescription>
             </Header>
             <FormContainer>
@@ -121,7 +158,7 @@ const EventForm = () => {
                             </ActionButton>
                         ) : (
                             <ActionButton type="button" primary onClick={handleSubmit}>
-                                <span>Enviar</span>
+                                <span>{isEditMode ? "Salvar Alterações" : "Enviar"}</span>
                             </ActionButton>
                         )}
                     </Actions>

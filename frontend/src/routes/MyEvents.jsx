@@ -4,6 +4,7 @@ import eventFetch from "../axios/config";
 import CardEventActions from '../components/CardEventActions';
 import styled from 'styled-components';
 import theme from '../theme';
+import Modal from '../components/Modal';
 
 const Wrapper = styled.div`
     text-align: center;
@@ -27,6 +28,8 @@ const MyEvents = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const [openModal, setOpenModal] = useState(false);
+    const [selectedEvent, setSelectedEvent] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -47,16 +50,26 @@ const MyEvents = () => {
     }, []);
 
     const handleCardClick = (event) => {
-        navigate(`/event/${event.id}`, {state: {event}});
+        navigate(`/event/${event._id}`, { state: { event } });
     };
 
     const handleEditClick = (event) => {
-        navigate(`/event/edit/${event.id}`);
+        navigate(`/event/edit/${event._id}`);
     };
 
     const handleDeleteClick = (event) => {
-        // Adicione a lógica de exclusão aqui
-        console.log("Excluir", event);
+        setSelectedEvent(event);
+        setOpenModal(true);
+    };
+
+    const confirmDelete = async () => {
+        try {
+            await eventFetch.delete(`/event/${selectedEvent._id}`);
+            setEvents(events.filter(event => event._id !== selectedEvent._id));
+            setOpenModal(false);
+        } catch (error) {
+            console.error("Error deleting event:", error);
+        }
     };
 
     if (loading) {
@@ -74,7 +87,7 @@ const MyEvents = () => {
                 {events.length > 0 ? (
                     events.map(event => (
                         <CardEventActions 
-                            key={event.id} 
+                            key={event._id} 
                             event={event} 
                             onClick={() => handleCardClick(event)} 
                             onEdit={() => handleEditClick(event)}
@@ -85,6 +98,13 @@ const MyEvents = () => {
                     <p>Nenhum evento criado</p>
                 )}
             </Container>
+            <Modal isOpen={openModal} 
+                OnConfirm={confirmDelete}
+                OnCancel={() => setOpenModal(false)}
+            >
+                <h1>Deletar Evento</h1>
+                <p>Você tem certeza que deseja deletar este evento?</p>
+            </Modal>
         </Wrapper>
     );
 };

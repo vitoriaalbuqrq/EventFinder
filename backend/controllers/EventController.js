@@ -95,7 +95,7 @@ const eventController = {
                 res.status(404).json({msg: "Evento não encontrado!"})
                 return;
             }
-            res.status(200).json({event, msg: "Event atualizado com sucesso!"})
+            res.status(200).json({event, msg: "Evento atualizado com sucesso!"})
         } catch (error){
             console.log(error)
         }
