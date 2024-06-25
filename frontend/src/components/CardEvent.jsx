@@ -70,7 +70,7 @@ const CardInfo = styled.div`
     border-left: 1px solid ${theme.colors.main_color};
     border-right: 1px solid ${theme.colors.main_color};
     border-bottom: 1px solid ${theme.colors.main_color};
-    border-radius: ${(props) => (props.noBorderRadius ? 'none' : '0 0 20px 20px')};
+    border-radius: ${(props) => (props.noborderradius ? 'none' : '0 0 20px 20px')};
     background-color: ${theme.colors.ligth_gray};
     div{
         display: flex;
@@ -81,10 +81,11 @@ const CardInfo = styled.div`
 
 `
 
-const CardEvent = ({ event, onClick, noBorderRadius, children }) => {
+const CardEvent = ({ event, onClick, noborderradius, children }) => {
     // Cria a URL completa para a imagem do evento
     const imageUrl = event.imgEvent ? `${BASE_URL}${event.imgEvent}` : defaultImage;
-    
+    const noborderradiusString = noborderradius ? 'true' : undefined;
+
     return (
         <CardWrapper>
             <CardMain onClick={onClick}>
@@ -100,11 +101,11 @@ const CardEvent = ({ event, onClick, noBorderRadius, children }) => {
                         </DateText>
                     </ContainerDate>
                 </CardImg>
-                <CardInfo noBorderRadius={noBorderRadius}>
+                <CardInfo noborderradius={noborderradiusString}>
                     <p>{event.name}</p>
                     <div>
                         <FaLocationDot />
-                        <small>{event.city}</small>
+                        <small>{event.isOnlineEvent ? `${event.platform}` : `${event.city}`}</small>
                     </div>
                 </CardInfo>
             </CardMain>

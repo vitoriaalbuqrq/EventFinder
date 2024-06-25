@@ -7,7 +7,7 @@ import theme from '../theme';
 
 const Wrapper = styled.div`
     text-align: center;
-    padding: 3rem 6rem;
+    padding: 3rem 5rem;
 
     h1 {
         margin-bottom: 3rem;
@@ -44,7 +44,9 @@ const Events = () => {
             try {
                 const response = await eventFetch.get("/events");
                 if (response.data && Array.isArray(response.data)) {
-                    setEvents(response.data);
+                    // Ordenar eventos por data
+                    const sortedEvents = response.data.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+                    setEvents(sortedEvents);
                 } else {
                     setError("Invalid data structure received from the server");
                 }

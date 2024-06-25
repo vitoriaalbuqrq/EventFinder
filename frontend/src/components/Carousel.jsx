@@ -23,7 +23,8 @@ const SectionTitle = styled.h1`
 
 const Carousel = () => {
   const [data, setData] = useState([]);
-  const navigate = useNavigate(); 
+  const [recentEvents, setRecentEvents] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,10 +38,20 @@ const Carousel = () => {
     fetchData();
   }, [])
 
+  useEffect(() => {
+    if (data.length > 0) {
+      // Ordenar eventos mais recentes quando `data` é atualizado
+      const sortedEvents = data.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+      const slicedEvents = sortedEvents.slice(0, 6).reverse();
+
+      setRecentEvents(slicedEvents);
+    }
+  }, [data]);
+
   const handleCardClick = (event) => {
     navigate(`/event/${event._id}`, {state: {event}});
   }
-
+  
   return (
     <CardContainer>
       <SectionTitle>Eventos Recentes</SectionTitle>
@@ -71,7 +82,7 @@ const Carousel = () => {
         // centeredSlides
         spaceBetween={15}
       >
-        {data.map((item) => (
+        {recentEvents.map((item) => (
           <SwiperSlide key={item._id}>
             <CardEvent event={item} onClick={() => handleCardClick(item)} />
           </SwiperSlide>

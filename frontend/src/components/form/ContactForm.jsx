@@ -19,7 +19,7 @@ const ContactForm = ({ data, updateFieldHandler }) => {
         onChange={(e) => updateFieldHandler("contactEmail", e.target.value)}
       />
       <Input
-        type="text"
+        type="tel"
         text="Telefone de contato"
         name="telephone"
         value={data.telephone || ""}

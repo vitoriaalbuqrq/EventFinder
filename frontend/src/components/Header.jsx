@@ -10,8 +10,7 @@ const Header = ({ searchTerm, setSearchTerm, selectedLocation, setSelectedLocati
 
       <HeaderContainer>
         <SloganHeader>
-          O poder de divulgação está em suas mãos.
-          Cadastre e gerencie seus eventos
+          Encontre os melhores eventos ou cadastre e gerencie os seus com facilidade
         </SloganHeader>
 
         <Search

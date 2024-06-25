@@ -8,15 +8,15 @@ const Navbar = () => {
       <NavbarList>
         <LeftList>
           <li>
-            <LinkButton to="/" text="EventFinder" textColor={theme.colors.primary} isLogo={true}/>
+            <LinkButton to="/" text="EventFinder" textcolor={theme.colors.primary} islogo={true}/>
           </li>
         </LeftList>
         <RightList>
           <li>
-            <LinkButton to="/my-events" text="Meus eventos" textColor={theme.colors.primary} />
+            <LinkButton to="/my-events" text="Meus eventos" textcolor={theme.colors.primary} />
           </li>
           <li>
-            <LinkButton to="/event/new" text="Criar Evento" bgColor={theme.colors.primary} textColor={theme.colors.secondary} />
+            <LinkButton to="/event/new" text="Criar Evento" backgroundcolor={theme.colors.primary} textcolor={theme.colors.secondary} />
           </li>
         </RightList>
       </NavbarList>

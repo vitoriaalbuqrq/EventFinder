@@ -3,7 +3,7 @@ import theme from '../theme'
 
 export const HeaderWrapper = styled.header`
     width: 100%;
-    height: 520px;
+    height: 500px;
     position: relative;
 `;
 
@@ -12,9 +12,7 @@ export const BannerImage = styled.img`
     width: 100%;
     height: 100%;
     position: relative;
-
     /* filter: opacity(98%); */
-    /* filter: grayscale(20%); */
 `;
 
 export const HeaderContainer = styled.div`
@@ -30,6 +28,7 @@ export const HeaderContainer = styled.div`
 export const SloganHeader = styled.h1`
     font-weight: bold;
     margin: 0 auto;
+    margin-inline: 65px;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
@@ -77,7 +76,6 @@ export const Icon = styled.div`
 export const CustomSelectWrapper = styled.div`
     position: relative;
     flex: 1;
-    /* width: 200px; Ajuste conforme necessário */
 `;
 
 export const CustomSelect = styled.div`

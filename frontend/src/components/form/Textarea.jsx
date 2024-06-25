@@ -1,3 +1,4 @@
+import { useState } from "react"
 import styled from "styled-components"
 
 const TextareaContainer = styled.div`
@@ -16,27 +17,40 @@ const StyledTextarea = styled.textarea`
     height: 120px;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-
+    ${(props) => props.error && `
+        border: 1px solid red;
+    `}
     &:focus {
         outline: none;
     }
 `
 
-const Textarea = ({ type, text, name, placeholder, onChange, value, required}) => {
-  return (
-    <TextareaContainer>
-        <StyledLabel htmlFor={name}>{text}</StyledLabel>
-        <StyledTextarea
-            type={type}
-            name={name}
-            id={name}
-            placeholder={placeholder}
-            onChange={onChange}
-            value={value}
-            required={required}
-        />
-    </TextareaContainer>
-  )
+const Textarea = ({ type, text, name, placeholder, onChange, value, required }) => {
+    const [error, setError] = useState(false);
+
+    const handleBlur = () => {
+        if (required && !value) {
+            setError(true);
+        } else {
+            setError(false);
+        }
+    };
+    return (
+        <TextareaContainer>
+            <StyledLabel htmlFor={name}>{text}</StyledLabel>
+            <StyledTextarea
+                type={type}
+                name={name}
+                id={name}
+                placeholder={placeholder}
+                onChange={onChange}
+                value={value}
+                required={required}
+                onBlur={handleBlur}
+                error={error}
+            />
+        </TextareaContainer>
+    )
 }
 
 export default Textarea

@@ -36,7 +36,9 @@ const MyEvents = () => {
             try {
                 const response = await eventFetch.get("/events");
                 if (response.data && Array.isArray(response.data)) {
-                    setEvents(response.data);
+                    // Ordenar eventos por data 
+                    const sortedEvents = response.data.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+                    setEvents(sortedEvents);
                 } else {
                     setError("Invalid data structure received from the server");
                 }

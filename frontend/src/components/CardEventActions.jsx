@@ -39,11 +39,11 @@ const ActionButton = styled.button`
     }
 `;
 
-const CardEventActions = ({ event, onClick, onEdit, onDelete }) => (
+const CardEventActions = ({ event, onClick, onEdit, onDelete}) => (
     <CardEvent 
         event={event} 
         onClick={onClick} 
-        noBorderRadius={true}
+        noborderradius={true}
     >
         <CardActions>
             <ActionButton onClick={onEdit}>Editar</ActionButton>
