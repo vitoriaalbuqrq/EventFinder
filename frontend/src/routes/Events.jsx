@@ -26,7 +26,7 @@ const categoryMap = {
     'shows e festivais': 'shows',
     'workshops': 'workshops',
     'online': 'online',
-    'educacao': 'educacao',
+    'educação': 'educacao',
     'social': 'social',
     'outros': 'outros'
 };

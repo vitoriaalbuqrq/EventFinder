@@ -20,45 +20,46 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
+    isOnlineEvent: {
+      type: Boolean,
+      required: true,
+    },
+    platform: {
+      type: String,
+    },
     cep: {
       type: String,
-      required: true,
     },
     street: {
       type: String,
-      required: true,
     },
     neighborhood: {
       type: String,
-      required: true,
     },
     city: {
       type: String,
-      required: true,
     },
     state: {
       type: String,
-      required: true,
     },
     number: {
       type: String,
-      required: true,
     },
     startTime: {
       type: String,
       required: true,
     },
     endTime: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     startDate: {
       type: Date,
       required: true,
     },
     organizerName: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     contactEmail: {
       type: String,

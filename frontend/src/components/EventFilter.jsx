@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import eventFetch from '../axios/config';
 import CardEvent from './CardEvent';
-import Container, { Title } from './Container';
+import Container, { Title, Wrapper } from './Container';
+import { useNavigate } from 'react-router-dom';
 
 const EventFilter = ({ searchTerm, selectedLocation }) => {
     const [events, setEvents] = useState([]);
     const [filteredEvents, setFilteredEvents] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,21 +41,25 @@ const EventFilter = ({ searchTerm, selectedLocation }) => {
         }
     }, [searchTerm, selectedLocation, events]);
 
+    const handleCardClick = (event) => {
+        navigate(`/event/${event._id}`, { state: { event } });
+    };
+
     return (
-        <>
-        {filteredEvents.length > 0 && (
-            <Title>Resultados da busca</Title>
-        )
-        }
-        <Container>
-        {filteredEvents.map((event, index) => (
-            <div key={index}>
-                <CardEvent event={event} />
-            </div>
-        ))
-        }
-        </Container >
-        </>
+        <Wrapper>
+            {filteredEvents.length > 0 && (
+                <>
+                    <Title>Resultados da busca</Title>
+                    <Container>
+                        {filteredEvents.map((event, index) => (
+                            <div key={index}>
+                                <CardEvent event={event} onClick={() => handleCardClick(event)} />
+                            </div>
+                        ))}
+                    </Container>
+                </>
+            )}
+        </Wrapper>
     );
 };
 

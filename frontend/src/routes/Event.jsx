@@ -7,7 +7,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import styled from 'styled-components';
 import theme from '../theme';
 import defaultImage from '../assets/defaultEvent.png';
-import eventFetch from '../axios/config'; // Importe seu cliente axios configurado
+import eventFetch from '../axios/config';
+const BASE_URL = 'http://localhost:3000';
 
 const SectionEvent = styled.section`
   padding: 2rem 8rem;
@@ -41,30 +42,31 @@ const RightSection = styled.div`
 `;
 
 const Event = () => {
-  const { id } = useParams(); // Obtém o ID da rota
+  const { id } = useParams();
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const response = await eventFetch.get(`/event/${id}`); // Faz a requisição GET usando o ID
-        setEvent(response.data); // Atualiza o estado do evento com os dados recebidos
+        const response = await eventFetch.get(`/event/${id}`);
+        setEvent(response.data);
       } catch (error) {
         console.error('Erro ao buscar detalhes do evento:', error);
       }
     };
 
     fetchEvent();
-  }, [id]); // Executa novamente o fetch quando o ID muda
+  }, [id]);
 
   if (!event) {
-    return <div>Carregando...</div>; // Pode ser interessante mostrar um indicador de carregamento
+    return <div>Carregando...</div>;
   }
 
+  const imageUrl = event.imgEvent ? `${BASE_URL}${event.imgEvent}` : defaultImage;
   return (
     <>
       <HeaderEvent
-        img={event.imgEvent || defaultImage}
+        img={imageUrl || defaultImage}
         name={event.name}
         organizerName={event.organizerName}
         startDate={event.startDate}
@@ -92,10 +94,10 @@ const Event = () => {
 
       <SectionEvent>
         <RightSection>
-          <h2>Localização</h2>
+          <h2>{event.isOnlineEvent ? "Plataforma": "Localização"}</h2>
           <div>
-            <FaLocationDot className='icon'/>
-            <p>{event.street}, nº {event.number}, {event.city}-{event.state}</p>
+            <FaLocationDot className='icon' />
+            <p>{event.isOnlineEvent ? `${event.platform}` : `${event.street}, nº ${event.number}, ${event.city}-${event.state}`}</p>
           </div>
         </RightSection>
       </SectionEvent>

@@ -71,7 +71,7 @@ const CardInfo = styled.div`
     border-right: 1px solid ${theme.colors.main_color};
     border-bottom: 1px solid ${theme.colors.main_color};
     border-radius: ${(props) => (props.noBorderRadius ? 'none' : '0 0 20px 20px')};
-
+    background-color: ${theme.colors.ligth_gray};
     div{
         display: flex;
         align-items: center;

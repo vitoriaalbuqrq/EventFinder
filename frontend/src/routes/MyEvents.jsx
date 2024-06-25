@@ -102,8 +102,6 @@ const MyEvents = () => {
                 OnConfirm={confirmDelete}
                 OnCancel={() => setOpenModal(false)}
             >
-                <h1>Deletar Evento</h1>
-                <p>Você tem certeza que deseja deletar este evento?</p>
             </Modal>
         </Wrapper>
     );

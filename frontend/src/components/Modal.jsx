@@ -18,11 +18,16 @@ const Container = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 10px 30px 30px 30px;
+    padding: 10px 20px 20px 20px;
     background-color: #fff;
     border-radius: 20px;
     
-    h2 {
+    div{
+      display: flex;
+      align-items: center;
+      margin-block: 10px;
+    }
+    hr {
       margin-bottom: 20px;
     }
 `
@@ -46,13 +51,13 @@ const Actions = styled.div`
   display: flex;
   justify-content: end;
   gap: 15px;
-  margin-top: 30px;
+  padding-top: 20px;
 `
 const Icon = styled.div`
   text-align: end;
   font-size: 24px;
   color: #686868;
-  margin-top: 20px;
+  margin-left: auto;
   cursor: pointer;
 `
 
@@ -62,8 +67,12 @@ const Modal = ({ isOpen, children, OnConfirm, OnCancel }) => {
     return (
       <Overlay>
         <Container>
-          <Icon><IoClose onClick={OnCancel}/></Icon>
-          {children}
+          <div>
+            <h2>Excluir Evento</h2>
+            <Icon><IoClose onClick={OnCancel} /></Icon>
+          </div>
+            <hr />
+          <p>Você tem certeza que deseja deletar este evento?</p>
           <Actions>
             <Button onClick={OnCancel}>Cancelar</Button>
             <Button onClick={OnConfirm}>Confirmar</Button>

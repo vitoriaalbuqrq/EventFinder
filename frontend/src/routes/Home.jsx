@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Header from '../components/Header'
 import Categories from '../components/Categories'
 import Carousel from '../components/Carousel'
-import { Container } from '../components/Categories.style'
 import EventFilter from '../components/EventFilter'
 
 const Home = () => {

@@ -4,34 +4,20 @@ import Input from '../form/Input';
 import Checkbox from './Checkbox';
 
 const AddressForm = ({ data, updateFieldHandler }) => {
-  const [isOnlineEvent, setIsOnlineEvent] = useState(false)
+  const [isOnlineEvent, setIsOnlineEvent] = useState(data.isOnlineEvent || false);
 
   const handleCheckboxChange = () => {
-    setIsOnlineEvent(!isOnlineEvent)
+    setIsOnlineEvent(!isOnlineEvent);
+    updateFieldHandler("isOnlineEvent", !isOnlineEvent);
     if (!isOnlineEvent) {
-      updateFieldHandler("cep", "")
-      updateFieldHandler("address", "")
-      updateFieldHandler("city", "")
-      updateFieldHandler("state", "")
+      updateFieldHandler("cep", "");
+      updateFieldHandler("street", "");
+      updateFieldHandler("neighborhood", "");
+      updateFieldHandler("city", "");
+      updateFieldHandler("state", "");
+      updateFieldHandler("number", "");
     }
-  }
-
-  function onBlurCep(ev, updateFieldHandler) {
-    const { value } = ev.target;
-    const cep = value?.replace(/[^0-9]/g, '')
-
-    if (cep?.length !== 8) {
-      return;
-    }
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        updateFieldHandler('street', data.logradouro)
-        updateFieldHandler('neighborhood', data.bairro)
-        updateFieldHandler('city', data.localidade)
-        updateFieldHandler('state', data.uf)
-      })
-  }
+  };
 
   return (
     <div className="form-control">
@@ -59,7 +45,6 @@ const AddressForm = ({ data, updateFieldHandler }) => {
             value={data.cep || ""}
             required={true}
             onChange={(e) => updateFieldHandler("cep", e.target.value)}
-            onBlur={(ev) => onBlurCep(ev, updateFieldHandler)}
           />
           <Input
             type="text"
@@ -99,7 +84,6 @@ const AddressForm = ({ data, updateFieldHandler }) => {
             required={true}
             onChange={(e) => updateFieldHandler("number", e.target.value)}
           />
-
         </>
       )}
       <Input
@@ -127,7 +111,6 @@ const AddressForm = ({ data, updateFieldHandler }) => {
           onChange={(e) => updateFieldHandler("endTime", e.target.value)}
         />
       </ContainerFlex>
-
     </div>
   );
 };

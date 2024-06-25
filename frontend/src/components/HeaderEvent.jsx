@@ -1,7 +1,6 @@
+import React from 'react';
 import styled from "styled-components"
 import theme from '../theme'
-
-const BASE_URL = 'http://localhost:3000';
 
 const Header = styled.header`
   position: relative;
@@ -76,10 +75,9 @@ const formatDate = (dateString) => {
 };
 
 const HeaderEvent = ({ img, name, organizerName, startDate, startTime, endTime }) => {
-  const imageUrl = img ? `${BASE_URL}${img}` : defaultImage;
   return (
     <Header>
-      <ImgHeader src={imageUrl} alt='imagem evento' />
+      <ImgHeader src={img} alt='imagem evento' />
       <Overlay>
         <EventName>{name}</EventName>
         <OrganizerName>By {organizerName}</OrganizerName>
