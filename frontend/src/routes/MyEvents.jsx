@@ -5,6 +5,7 @@ import CardEventActions from '../components/CardEventActions';
 import styled from 'styled-components';
 import theme from '../theme';
 import Modal from '../components/Modal';
+import useToast from "../hooks/useToast";
 
 const Wrapper = styled.div`
     text-align: center;
@@ -66,11 +67,13 @@ const MyEvents = () => {
 
     const confirmDelete = async () => {
         try {
-            await eventFetch.delete(`/event/${selectedEvent._id}`);
+            const response = await eventFetch.delete(`/event/${selectedEvent._id}`);
             setEvents(events.filter(event => event._id !== selectedEvent._id));
             setOpenModal(false);
+            useToast(response.data.msg); 
         } catch (error) {
             console.error("Error deleting event:", error);
+            useToast("Erro ao excluir evento!");
         }
     };
 

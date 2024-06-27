@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components"
+import styled, { css } from "styled-components";
 import { useState } from 'react';
 
 const InputContainer = styled.div`
@@ -18,7 +18,7 @@ const StyledInput = styled.input`
   border: none;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 
-  ${(props) => props.error && css`
+  ${(props) => props.$error && css`
     border: 1px solid red;
   `}
 
@@ -37,10 +37,10 @@ const validatePhone = (phone) => {
     return regex.test(phone);
 };
 
-const Input = ({ type, text, name, placeholder, onChange, value, required }) => {
+const Input = ({ type, text, name, placeholder, onChange, value, required, customOnBlur }) => {
     const [error, setError] = useState(false);
 
-    const handleBlur = () => {
+    const handleBlur = (e) => {
         if (required && !value) {
             setError(true);
         } else if (type === 'email' && !validateEmail(value)) {
@@ -49,6 +49,10 @@ const Input = ({ type, text, name, placeholder, onChange, value, required }) => 
             setError(true);
         } else {
             setError(false);
+        }
+        
+        if (customOnBlur) {
+            customOnBlur(e);
         }
     };
 
@@ -64,7 +68,7 @@ const Input = ({ type, text, name, placeholder, onChange, value, required }) => 
                 value={value}
                 required={required}
                 onBlur={handleBlur}
-                error={error}
+                $error={error}
             />
         </InputContainer>
     );

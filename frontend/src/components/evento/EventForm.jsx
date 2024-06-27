@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { useForm } from "../hooks/useForm";
+import { useForm } from "../../hooks/useForm";
 import eventFetch from "../../axios/config";
 import { useNavigate } from 'react-router-dom'
 import InfoForm from "../form/InfoForm";
 import AddressForm from "../form/AddressForm";
 import ContactForm from "../form/ContactForm";
 import Steps from "../form/Steps";
+import useToast from "../../hooks/useToast";
+
 import {
   AppContainer,
   Header,
@@ -101,14 +103,12 @@ const EventForm = ({ eventId, isEditMode }) => {
           });
         }
 
-        console.log("Resposta do servidor:", response.data);
-
         if (response.status === 200) {
-          console.log(response.data.msg);
+          useToast(response.data.msg);
           navigate(`/my-events`);
         } else if (response.status === 201) {
-          console.log(response.data.msg);
           const createdEventId = response.data.response._id;
+          useToast(response.data.msg);
           navigate(`/event/${createdEventId}`);
         } else {
           console.error("Erro: Resposta inválida do servidor");
@@ -153,11 +153,11 @@ const EventForm = ({ eventId, isEditMode }) => {
               </ActionButton>
             )}
             {!isLastStep ? (
-              <ActionButton type="submit" primary>
+              <ActionButton type="submit" $primary>
                 <span>Avançar</span>
               </ActionButton>
             ) : (
-              <ActionButton type="button" primary onClick={handleSubmit}>
+              <ActionButton type="button" $primary onClick={handleSubmit}>
                 <span>{isEditMode ? "Salvar Alterações" : "Enviar"}</span>
               </ActionButton>
             )}

@@ -19,8 +19,34 @@ const AddressForm = ({ data, updateFieldHandler }) => {
     }
   };
 
+  const onBlurCep = (e) => {
+    const { value } = e.target;
+    const cep = value?.replace(/[^0-9]/g, '');
+
+    if (cep?.length !== 8) {
+      console.log('CEP inválido');
+      return;
+    }
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.erro) {
+          alert("CEP inválido");
+          return;
+        }
+        updateFieldHandler('street', data.logradouro);
+        updateFieldHandler('neighborhood', data.bairro);
+        updateFieldHandler('city', data.localidade);
+        updateFieldHandler('state', data.uf);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar o CEP: ", error);
+      });
+  };
+
   return (
-    <div className="form-control">
+    <div>
       <Checkbox
         text="Evento online"
         name="isOnlineEvent"
@@ -45,6 +71,7 @@ const AddressForm = ({ data, updateFieldHandler }) => {
             value={data.cep || ""}
             required={true}
             onChange={(e) => updateFieldHandler("cep", e.target.value)}
+            customOnBlur={onBlurCep} 
           />
           <Input
             type="text"
@@ -91,6 +118,7 @@ const AddressForm = ({ data, updateFieldHandler }) => {
         text="Data de início"
         name="startDate"
         value={data.startDate || ""}
+        required={true}
         onChange={(e) => updateFieldHandler("startDate", e.target.value)}
       />
       <ContainerFlex>

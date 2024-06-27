@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "../../theme";
 
 // Estilos para a aplicação
 export const AppContainer = styled.div`
@@ -46,6 +47,10 @@ export const Actions = styled.div`
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
+
+    &:nth-child(1){
+        background-color: #8a8a8a;
+    }
 `;
 
 export const ActionButton = styled.button`
@@ -59,7 +64,7 @@ export const ActionButton = styled.button`
     border: none;
     transition: 0.3s;
     font-weight: bold;
-    background-color: ${props => props.primary ? '#404BE3' : '#8a8a8a'};
+    background-color: ${props => props.$primary ? '#404BE3' : '#8a8a8a'};
     color: #fff;
 
     &:hover {

@@ -16,7 +16,7 @@ const StyledLinkButton = styled(Link)`
     opacity: 0.9;
   }
 
-  ${props => props.islogo && `
+  ${props => props.$islogo && `
     font-size: 1.1em;
     font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -24,8 +24,7 @@ const StyledLinkButton = styled(Link)`
 `;
 
 const LinkButton = ({ to, text, backgroundcolor, textcolor, islogo }) => {
-  const isLogoString = islogo ? 'true' : undefined;
-  return <StyledLinkButton to={to} backgroundcolor={backgroundcolor} textcolor={textcolor} islogo={isLogoString}>{text}</StyledLinkButton>;
+  return <StyledLinkButton to={to} backgroundcolor={backgroundcolor} textcolor={textcolor} $islogo={islogo}>{text}</StyledLinkButton>;
 };
 
 export default LinkButton;
