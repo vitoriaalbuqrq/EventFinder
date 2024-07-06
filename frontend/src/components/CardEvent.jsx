@@ -3,7 +3,7 @@ import defaultImage from '../assets/defaultEvent.png'
 import { FaLocationDot } from "react-icons/fa6";
 import theme from '../theme';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://eventfinder-g20q.onrender.com';
 
 const CardWrapper = styled.div`
     border-radius: 20px;

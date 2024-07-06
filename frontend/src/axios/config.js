@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const eventFetch = axios.create({
-  baseURL: "http://localhost:3000/api/",
+  baseURL: "https://eventfinder-g20q.onrender.com/api/",
   headers: {
     "Content-Type": "application/json",
   },

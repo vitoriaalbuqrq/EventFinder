@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import theme from '../theme';
 import defaultImage from '../assets/defaultEvent.png';
 import eventFetch from '../axios/config';
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://eventfinder-g20q.onrender.com';
 
 const SectionEvent = styled.section`
   padding: 2rem 8rem;
